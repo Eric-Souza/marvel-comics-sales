@@ -5,27 +5,19 @@ import '../styles/components.css';
 
 const Products = () => {
 
-  // ESTADOS
-
-  // Renderização condicional
+  // States
   const [isComicsVisible, setVisibleComics] = useState(false);
   const [isCharsVisible, setVisibleChars] = useState(false);
   const [isCartVisible, setCartVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  // States dos Comics
   const [comics, setComics] = useState([]);
   const [comicsCount, setComicsCount] = useState(0);
-
-  // States dos Personagens
   const [chars, setChars] = useState([]);
-
-  // State do Carrinho
   const [chosenProducts, setChosenProducts] = useState([]);
 
-  // MÉTODOS
+  // Functions
 
-  // Todos os Comics
+  // All Comics
   const showComics = async () => {
 
     setVisibleChars(false);
@@ -40,7 +32,7 @@ const Products = () => {
     setIsLoading(false);
   };
 
-  // Todos os Personagens
+  // All Characters
   const showCharacters = async () => {
 
     setVisibleComics(false);
@@ -56,11 +48,16 @@ const Products = () => {
     setIsLoading(false);
   };
 
-  // Carrinho
-  const sendComics = (product) => {
+  // Cart
+  const sendComics = product => {
     setChosenProducts([...chosenProducts, product.title, product.prices.map((indPrice) => (indPrice.price))]);
     setCartVisible(true);
     setComicsCount(comicsCount +1);
+  };
+
+  const clearCart = () => {
+    setChosenProducts([]);
+    setComicsCount(0);
   };
 
   return (
@@ -96,7 +93,7 @@ const Products = () => {
 
                 <div> 
                   <p>U$ {individualPrice.price}</p> 
-                  <button onClick={(comics) => sendComics(comic)}> Adicionar ao Carrinho </button> 
+                  <button onClick={() => sendComics(comic)}> Adicionar ao Carrinho </button> 
                 </div>
                 
                 : 'Não disponível'} 
@@ -150,7 +147,7 @@ const Products = () => {
 
           <div>
 
-            <span>Items no carrinho: {comicsCount}</span>
+            <span>Comics no carrinho: {comicsCount}</span>
 
             {chosenProducts.map((product, index) => (
               <div key={index}>
@@ -160,7 +157,7 @@ const Products = () => {
             
           </div>
           
-          <button id='removeButton' onClick={() => setChosenProducts([])}> Limpar Lista </button>
+          <button id='removeButton' onClick={clearCart}> Limpar Lista </button>
           <button onClick={() => {window.location.href='/final'}}> Finalizar Compras </button>
         </>
      : ''

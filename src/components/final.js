@@ -7,20 +7,16 @@ const Final = () => {
 
     const [userName, setUserName] = useState('');
 
-    const saveClient = (e) => {
+    const saveClient = e => {
         e.preventDefault();
         
         if (userName === '') {
             toast.warning('Favor digitar o seu nome no campo especificado');
             return;
-        };
+        }
 
         localStorage.setItem('Nome', userName);
         toast.success('Compra finalizada, volte sempre!');
-
-        setTimeout(() => {
-            window.location.href='https://www.mutuus.net'
-        }, 2000);
     };
 
     return (
