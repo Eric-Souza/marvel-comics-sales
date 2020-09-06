@@ -16,9 +16,7 @@ const Products = () => {
   const [chosenProducts, setChosenProducts] = useState([]);
 
   // Functions
-
-  // All Comics
-  const showComics = async () => {
+  const showAllComics = async () => {
 
     setVisibleChars(false);
     setIsLoading(true);
@@ -32,8 +30,7 @@ const Products = () => {
     setIsLoading(false);
   };
 
-  // All Characters
-  const showCharacters = async () => {
+  const showAllCharacters = async () => {
 
     setVisibleComics(false);
     setCartVisible(false);
@@ -48,8 +45,7 @@ const Products = () => {
     setIsLoading(false);
   };
 
-  // Cart
-  const sendComics = product => {
+  const sendComicsToCart = product => {
     setChosenProducts([...chosenProducts, product.title, product.prices.map((indPrice) => (indPrice.price))]);
     setCartVisible(true);
     setComicsCount(comicsCount +1);
@@ -64,9 +60,9 @@ const Products = () => {
     <>
 
     <div id='choices'>
-      <button onClick={showComics}     > Todos os Comics      </button>
+      <button onClick={showAllComics}     > Todos os Comics      </button>
       {isLoading === true ? <h3>Carregando...</h3> : ''}
-      <button onClick={showCharacters} > Todos os Personagens </button>
+      <button onClick={showAllCharacters} > Todos os Personagens </button>
     </div>
  
     <div id='lists'>
@@ -93,7 +89,7 @@ const Products = () => {
 
                 <div> 
                   <p>U$ {individualPrice.price}</p> 
-                  <button onClick={() => sendComics(comic)}> Adicionar ao Carrinho </button> 
+                  <button onClick={() => sendComicsToCart(comic)}> Adicionar ao Carrinho </button> 
                 </div>
                 
                 : 'Não disponível'} 
