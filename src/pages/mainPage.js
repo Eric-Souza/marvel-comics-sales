@@ -1,27 +1,42 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// Services Import
-import api from '../services/api';
+// Function imports
+import { getAllComics } from '../services/services';
 
-export default class Products extends Component {
-    constructor() {
-        super()
-    };
-      
-    componentWillMount () {
-        this.showAllComics()
-    };
-      
-    showAllComics = async () => {
-        const apiKey = 'ts=1595879600&apikey=3e4689455ed92e49bc7607d9328ab0c6&hash=fbdacda12b4cb54ec2b3f1c51356fde6'
-        const response = await api.get(`/comics?limit=20&offset=${this.state.offset}&${apiKey}`)
+const MainPage = () => {
+    // Loading state
+    const [isLoading, setLoading] = useState(true)
+
+    // Comics states
+    const [allComics, setAllComics] = useState([])
+
+    // Renders initial data
+    const getData = async () => {
+        const response = await getAllComics()
+        
+        console.log("'getAllComics()' response: ", response)
+        const comics = response.data.data.results
+
+        setAllComics(comics)
+        setLoading(false)
     };
 
-    render () {
-        return (
-            <div>
-                Olá Mundo
-            </div>
-        );
-    };
+    // Configures component mounting
+    useEffect(() => {
+        getData()
+    }, []);
+
+    return (
+        <>
+            {isLoading === true ? <h3> Loading... </h3> :
+                <div>
+                    {allComics.map(comic => (
+                        <h3 key={comic.id}> {comic.title} </h3>
+                    ))}
+                </div>
+            }
+        </>
+    );
 };
+
+export default MainPage;
