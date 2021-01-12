@@ -12,7 +12,7 @@ function Copyright () {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       <Container color="inherit">
-        Developed by Eric
+        Developed by Eric, check my Github and LinkedIn:
 
         <div style={{ marginTop: 10 }}>
           <GitHubIcon onClick={ () => window.location.href='https://github.com/Eric-Souza' } cursor='pointer' />
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Footer(props) {
+const Footer = props => {
   const classes = useStyles();
   const { description, title } = props;
 
@@ -56,3 +56,5 @@ Footer.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
 };
+
+export default Footer;

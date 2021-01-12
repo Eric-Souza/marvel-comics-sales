@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material UI component imports
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -21,8 +23,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FeaturedPost(props) {
+const FeaturedPost = props => {
   const classes = useStyles();
+
   const { post } = props;
 
   return (
@@ -34,17 +37,17 @@ export default function FeaturedPost(props) {
               <Typography component="h2" variant="h5">
                 {post.title}
               </Typography>
+
               <Typography variant="subtitle1" color="textSecondary">
                 {post.date}
               </Typography>
+
               <Typography variant="subtitle1" paragraph>
                 {post.description}
               </Typography>
-              <Typography variant="subtitle1" color="primary">
-                Continue reading...
-              </Typography>
             </CardContent>
           </div>
+
           <Hidden xsDown>
             <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
           </Hidden>
@@ -57,3 +60,5 @@ export default function FeaturedPost(props) {
 FeaturedPost.propTypes = {
   post: PropTypes.object,
 };
+
+export default FeaturedPost;

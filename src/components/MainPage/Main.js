@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material UI component imports
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -13,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Main(props) {
+const Main = props => {
   const classes = useStyles();
+  
   const { posts, title } = props;
 
   return (
@@ -36,3 +39,5 @@ Main.propTypes = {
   posts: PropTypes.array,
   title: PropTypes.string,
 };
+
+export default Main;
