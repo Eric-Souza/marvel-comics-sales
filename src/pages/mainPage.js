@@ -1,55 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-// Component imports
+// Material UI Theme Switcher imports
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-// Function imports
-import { getAllComics, getAllChars } from '../services/services';
+// Material UI component imports
+import Blog from '../components/MainPage/Blog';
+import BrightnessMediumIcon from '@material-ui/icons/BrightnessMedium';
+import IconButton from '@material-ui/core/IconButton';
 
 const MainPage = () => {
-    // Loading state
-    const [isLoading, setLoading] = useState(true)
+    const [darkMode, setDarkMode] = useState(true)
 
-    // Comics states
-    const [allComics, setAllComics] = useState([])
-    const [allChars, setAllChars] = useState([])
-
-    // Renders initial data
-    const getData = async () => {
-        const comicsResponse = await getAllComics() // Gets all comics
-        const charsResponse = await getAllChars() // Gets all characters
-        
-        console.log("'getAllComics()' response: ", comicsResponse)
-        console.log("'getAllChars()' response: ", charsResponse)
-
-        const comics = comicsResponse.data.data.results
-        const chars = charsResponse.data.data.results
-
-        setAllComics(comics)
-        setAllChars(chars)
-
-        setLoading(false)
+    const handleThemeChange = () => {
+        if (darkMode === true) setDarkMode(false)
+        if (darkMode !== true) setDarkMode(true)
     };
 
-    // Configures component mounting
-    useEffect(() => {
-        getData()
-    }, []);
+    const theme = createMuiTheme({
+        palette: {
+            type: darkMode ? 'dark' : 'light',
+        }
+    });
 
     return (
-        <>
-            {isLoading === true ? <h3> Loading... </h3> :
-                <div>
-                {allComics.map(comic => (
-                    <h3 key={ comic.id }>{ comic.title }</h3>
-                ))}
-
-                {allChars.map(char => (
-                    <h3 key={ char.id }>{ char.name }</h3>
-                ))}
-                </div>
-            }
-        </>
-    );
-};
+        <ThemeProvider theme={ theme }>
+            <IconButton onClick={ handleThemeChange } color='inherit'> <BrightnessMediumIcon /> </IconButton>
+            <Blog />
+        </ThemeProvider>
+    )
+}
 
 export default MainPage;
