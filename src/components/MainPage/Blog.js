@@ -25,7 +25,7 @@ const featuredPosts = [
     title: 'Characters',
     description:
       'Learn the most interesting and creative lore about your favorite characters.',
-    image: 'https://source.unsplash.com/random',
+    image: "http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/standard_fantastic.jpg",
     imageText: 'Image Text',
   },
   {
