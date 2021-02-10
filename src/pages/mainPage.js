@@ -25,6 +25,7 @@ const MainPage = () => {
     return (
         <ThemeProvider theme={ theme }>
             <IconButton onClick={ handleThemeChange } color='inherit'> <BrightnessMediumIcon /> </IconButton>
+            
             <Blog />
         </ThemeProvider>
     )
