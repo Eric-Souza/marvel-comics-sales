@@ -4,8 +4,8 @@ import React from 'react';
 import { Redirect, BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import MainPage from '../pages/mainPage';
-import CharPage from '../pages/charPage';
-import ComicPage from '../pages/comicPage';
+import CharPage from '../pages/CharPage/charPage';
+import ComicPage from '../pages/ComicPage/comicPage';
 
 const Routes = () => (
     <BrowserRouter>
