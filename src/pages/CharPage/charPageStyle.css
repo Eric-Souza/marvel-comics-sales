@@ -72,10 +72,21 @@
     color: grey;
 }
 
+#buttons span {
+    color: #ED1D24;
+}
+
 #charactersList {
-    margin: 10px 15px;
+    margin: 10px 20px;
 }
 
 #characterCard {
     margin-bottom: 30px;
+    padding: 5px;
+
+    background-color: #343a40;
+    color: white;
+
+    border-bottom: 2px solid #ED1D24;
+    border-radius: 10px;
 }

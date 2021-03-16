@@ -25,12 +25,11 @@ const CharPage = () => {
     var offset = 0 + offsetIncrementor + offsetDecrementor
 
     const getData = async offset => {
-        const res = await getAllChars(offset)
+        const foundChars = await getAllChars(offset)
 
-        console.log('API response:', res)
-        console.log('All characters:', res.data.data.results)
+        console.log('All characters:', foundChars.data.data.results)
 
-        setAllChars(res.data.data.results)
+        setAllChars(foundChars.data.data.results)
         return setLoading(false)
     }
     
@@ -55,16 +54,26 @@ const CharPage = () => {
                 <div id='charactersList'>
                     {allChars.map( char => (
                         <Card id='characterCard' key={char.id}>
-                            <Card.Img style={{width:"300px", height:"200px"}} variant="left" src={`${char.thumbnail.path}${char.thumbnail.extension}`} />
+                            <Card.Img style={{width:"300px", height:"200px"}} variant="top" 
+                                src={`${char.thumbnail.path}/standard_xlarge.${char.thumbnail.extension}`} 
+                                alt="Character image"
+                            />
+
                             <Card.Body>
-                                <Card.Title>{char.name}</Card.Title>
+                                <Card.Title><span> {char.name} </span></Card.Title>
                                 <Card.Text>
-                                    {char.description === "" ? <>No description avalable for this character :(</> : <>{char.description}</>}
+                                    {char.description === "" ? <p> No description avalable for this character :(</p> : <p> {char.description} </p>}
                                 </Card.Text>
                             </Card.Body>
                             
                             <Card.Footer>
-                                <small className="text-muted">Last updated 3 mins ago</small>
+                                <small className="text-muted">
+                                    {char.urls.map(url => (
+                                        <button key={url.type} onClick={() => window.location.href=`${url.url}`}> 
+                                            {url.type} 
+                                        </button>
+                                    ))}
+                                </small>
                             </Card.Footer>
                         </Card>
                     ))}
@@ -89,6 +98,8 @@ const CharPage = () => {
                     > 
                         Previous Page
                     </button>
+
+                    <span>{pageCount}</span>
 
                     {/* Next page button */}
                     <button 
