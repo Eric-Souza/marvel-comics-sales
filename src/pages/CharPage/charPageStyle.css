@@ -90,3 +90,21 @@
     border-bottom: 2px solid #ED1D24;
     border-radius: 10px;
 }
+
+#characterCard span {
+    color: #ED1D24;
+    font-weight: bold;
+}
+
+#characterCard button {
+    border: none;
+    background-color: #343a40;
+    color: #ED1D24;
+    transition: 0.5s;
+}
+
+#characterCard button:hover {
+    border: none;
+    background-color: #343a40;
+    color: white;
+}
