@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
 // Style imports
-import './charPageStyle.css'
+import '../styles/pagesStyling.css'
 
 // Component imports
 import Spinner from 'react-bootstrap/Spinner'
 import Card from 'react-bootstrap/Card'
 
 // Function imports
-import { getAllChars } from '../../services/services'
+import { getAllChars } from '../services/services'
 
 const CharPage = () => {
     // Loading state
@@ -38,7 +38,7 @@ const CharPage = () => {
     }, [])
 
     return (
-        <div id='charPage'>
+        <div id='fullPage'>
         {isLoading === true ?
             <div id='loadingIcon'>
                 <Spinner animation="border" role="status" variant="danger" />
@@ -47,22 +47,22 @@ const CharPage = () => {
             <div>
                 <div id='navigation'>
                     <button onClick={() => window.location.href='/main'}> Home </button>
-                    <button disabled style={{color: 'white'}}> Characters </button>
+                    <button disabled> Characters </button>
                     <button onClick={() => window.location.href='/comics'}> Comics </button>
                 </div>
 
-                <div id='charactersList'>
+                <div id='list'>
                     {allChars.map( char => (
-                        <Card id='characterCard' key={char.id}>
+                        <Card id='card' key={char.id}>
                             <Card.Img style={{width:"300px", height:"200px"}} variant="top" 
                                 src={`${char.thumbnail.path}/standard_xlarge.${char.thumbnail.extension}`} 
                                 alt="Character image"
                             />
 
                             <Card.Body>
-                                <Card.Title><span> {char.name} </span></Card.Title>
+                                <Card.Title><h4> {char.name} </h4></Card.Title>
                                 <Card.Text>
-                                    {char.description === "" ? <p> No description avalable for this character :(</p> : <p> {char.description} </p>}
+                                    {char.description === "" ? <span> No description available for this character :(</span> : <span> {char.description} </span>}
                                 </Card.Text>
                             </Card.Body>
                             
@@ -70,7 +70,9 @@ const CharPage = () => {
                                 <small className="text-muted">
                                     {char.urls.map(url => (
                                         <button key={url.type} onClick={() => window.location.href=`${url.url}`}> 
-                                            {url.type} 
+                                            {url.type === "detail" ? <span> Details </span> : ""} 
+                                            {url.type === "wiki" ? <span> Wiki </span> : ""}
+                                            {url.type === "comiclink" ? <span> Comics Appearances </span> : ""}
                                         </button>
                                     ))}
                                 </small>
@@ -88,8 +90,8 @@ const CharPage = () => {
                             e.preventDefault()
                             setLoading(true)
 
-                            offset -= 10
-                            setDecrementor(offsetDecrementor - 10)
+                            offset -= 20
+                            setDecrementor(offsetDecrementor - 20)
                             setPage(pageCount - 1)
 
                             await getData(offset)
@@ -107,8 +109,8 @@ const CharPage = () => {
                             e.preventDefault()
                             setLoading(true)
 
-                            offset += 10
-                            setIncrementor(offsetIncrementor + 10)
+                            offset += 20
+                            setIncrementor(offsetIncrementor + 20)
                             setPage(pageCount + 1)
 
                             await getData(offset)

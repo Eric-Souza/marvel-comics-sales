@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-#charPage {
+#fullPage {
     font-family: 'Roboto', sans-serif;
 }
 
@@ -30,12 +30,17 @@
     border: none;
     background: none;
     color: #ED1D24;
+
     transition: all 0.5s;
 }
 
 #navigation button:hover {
     border: none;
     background: none;
+    color: white;
+}
+
+#navigation button:disabled {
     color: white;
 }
 
@@ -46,6 +51,7 @@
     padding: 10px;
 
     background-color: #343a40;
+    border-top: 1px solid #ED1D24;
 
     justify-content: space-evenly;
 
@@ -69,4 +75,40 @@
 #buttons button:disabled {
     background-color: #343a40;
     color: grey;
+}
+
+#buttons span {
+    color: #ED1D24;
+}
+
+#list {
+    margin: 10px 20px;
+}
+
+#card {
+    margin-bottom: 10px;
+    padding: 5px;
+
+    background-color: #343a40;
+    color: white;
+
+    border-bottom: 2px solid #ED1D24;
+    border-radius: 10px;
+}
+
+#card h4 {
+    color: #ED1D24;
+}
+
+#card button {
+    border: none;
+    background-color: #343a40;
+    color: #ED1D24;
+    transition: 0.5s;
+}
+
+#card button:hover {
+    border: none;
+    background-color: #343a40;
+    color: white;
 }
