@@ -1,4 +1,4 @@
-# marvel-comics-sales
+# Marvel Data Visualization
 An app made to display Marvel's comics, characters and other properties.
 
 Run "npm install" to install all packages and dependencies used.
