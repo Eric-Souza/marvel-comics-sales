@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card'
 // Function imports
 import { getAllComics } from '../services/services'
 
-const CharPage = () => {
+const ComicsPage = () => {
     // Loading state
     const [isLoading, setLoading] = useState(true)
 
@@ -52,7 +52,7 @@ const CharPage = () => {
                 </div>
 
                 <div id='list'>
-                    {allComics.map( comic => (
+                    {allComics.map(comic => (
                         <Card id='card' key={comic.id}>
                             <Card.Img style={{width:"300px", height:"200px"}} variant="top" 
                                 src={`${comic.thumbnail.path}/standard_xlarge.${comic.thumbnail.extension}`} 
@@ -127,4 +127,4 @@ const CharPage = () => {
     )
 }
 
-export default CharPage
+export default ComicsPage

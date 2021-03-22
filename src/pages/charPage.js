@@ -52,35 +52,37 @@ const CharPage = () => {
                 </div>
 
                 <div id='list'>
-                    {allChars.map( char => (
-                        <Card id='card' key={char.id}>
-                            <Card.Img style={{width:"300px", height:"200px"}} variant="top" 
-                                src={`${char.thumbnail.path}/standard_xlarge.${char.thumbnail.extension}`} 
-                                alt="Character image"
-                            />
+                    {allChars.map(char => (
+                    <>
+                        {char.description === "" ? "" :     // Will only render characters with a description
+                            <Card id='card' key={char.id}>
+                                <Card.Img style={{width:"300px", height:"200px"}} variant="top" 
+                                    src={`${char.thumbnail.path}/standard_xlarge.${char.thumbnail.extension}`} 
+                                    alt="Character image"
+                                />
 
-                            <Card.Body>
-                                <Card.Title><h4> {char.name} </h4></Card.Title>
-                                <Card.Text>
-                                    {char.description === "" ? <span> No description available for this character :(</span> : <span> {char.description} </span>}
-                                </Card.Text>
-                            </Card.Body>
-                            
-                            <Card.Footer>
-                                <small className="text-muted">
-                                    {char.urls.map(url => (
-                                        <button key={url.type} onClick={() => window.location.href=`${url.url}`}> 
-                                            {url.type === "detail" ? <span> Details </span> : ""} 
-                                            {url.type === "wiki" ? <span> Wiki </span> : ""}
-                                            {url.type === "comiclink" ? <span> Comics Appearances </span> : ""}
-                                        </button>
-                                    ))}
-                                </small>
-                            </Card.Footer>
-                        </Card>
+                                <Card.Body>
+                                    <Card.Title><h4> {char.name} </h4></Card.Title>
+                                    <Card.Text>
+                                        {char.description === "" ? <span> No description available for this character :(</span> : <span> {char.description} </span>}
+                                    </Card.Text>
+                                </Card.Body>
+                                
+                                <Card.Footer>
+                                    <small className="text-muted">
+                                        {char.urls.map(url => (
+                                            <button key={url.type} onClick={() => window.location.href=`${url.url}`}> 
+                                                {url.type === "detail" ? <span> Details </span> : ""} 
+                                                {url.type === "wiki" ? <span> Wiki </span> : ""}
+                                                {url.type === "comiclink" ? <span> Comics Appearances </span> : ""}
+                                            </button>
+                                        ))}
+                                    </small>
+                                </Card.Footer>
+                            </Card>
+                        } 
+                    </>
                     ))}
-
-                    
                 </div>
 
                 <div id='buttons'>
@@ -90,8 +92,8 @@ const CharPage = () => {
                             e.preventDefault()
                             setLoading(true)
 
-                            offset -= 20
-                            setDecrementor(offsetDecrementor - 20)
+                            offset -= 60
+                            setDecrementor(offsetDecrementor - 60)
                             setPage(pageCount - 1)
 
                             await getData(offset)
@@ -109,8 +111,8 @@ const CharPage = () => {
                             e.preventDefault()
                             setLoading(true)
 
-                            offset += 20
-                            setIncrementor(offsetIncrementor + 20)
+                            offset += 60
+                            setIncrementor(offsetIncrementor + 60)
                             setPage(pageCount + 1)
 
                             await getData(offset)
