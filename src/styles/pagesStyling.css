@@ -62,14 +62,14 @@
 #buttons button {
     border: none;
     background-color: #343a40;
-    color: #ED1D24;
+    color: white;
     transition: 0.5s;
 }
 
 #buttons button:hover {
     border: none;
     background-color: #343a40;
-    color: white;
+    color: #ED1D24;
 }
 
 #buttons button:disabled {
@@ -78,7 +78,7 @@
 }
 
 #buttons span {
-    color: #ED1D24;
+    color: white;
 }
 
 #list {
